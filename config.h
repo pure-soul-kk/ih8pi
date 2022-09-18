@@ -7,7 +7,6 @@ struct Config {
     Config(
             const std::string build_fingerprint = "",
             const std::string build_security_patch_date = "",
-            const std::string build_tags = "",
             const std::string build_type = "",
             const std::string build_version_release = "",
             const std::string build_version_release_or_codename = "",
@@ -18,7 +17,6 @@ struct Config {
             const std::string product_name = ""
     ) : build_fingerprint(build_fingerprint),
         build_security_patch_date(build_security_patch_date),
-        build_tags(build_tags),
         build_type(build_type),
         build_version_release(build_version_release),
         build_version_release_or_codename(build_version_release_or_codename),
@@ -30,7 +28,6 @@ struct Config {
 
     const std::string build_fingerprint;
     const std::string build_security_patch_date;
-    const std::string build_tags;
     const std::string build_type;
     const std::string build_version_release;
     const std::string build_version_release_or_codename;
