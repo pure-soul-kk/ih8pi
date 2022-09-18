@@ -11,6 +11,33 @@ static std::string get_value_or_empty(const config_map_t &config, const std::str
     return "";
 }
 
+#define FIND_AND_REMOVE(s, delimiter, variable_name) \
+    std::string variable_name = s.substr(0, s.find(delimiter)); \
+    s.erase(0, s.find(delimiter) + delimiter.length());
+
+const std::string Config::get_build_description() const {
+    static const std::string kDelimiter = "/";
+    static const std::string kDelimiter2 = ":";
+
+    if (build_fingerprint == "") {
+        return "";
+    }
+
+    std::string build_fingerprint_copy = build_fingerprint;
+
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter, brand)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter, product)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter2, device)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter, platform_version)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter, build_id)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter2, build_number)
+    FIND_AND_REMOVE(build_fingerprint_copy, kDelimiter, build_variant)
+    std::string build_version_tags = build_fingerprint_copy;
+
+    return product + "-" + build_variant + " " + platform_version +
+            " " + build_id + " " + build_number + " " + build_version_tags;
+}
+
 Config Config::from_file(const std::string config_path) {
     Config config;
     config_map_t config_map;
@@ -31,7 +58,6 @@ Config Config::from_file(const std::string config_path) {
 
     return Config(
         get_value_or_empty(config_map, "BUILD_FINGERPRINT"),
-        get_value_or_empty(config_map, "BUILD_DESCRIPTION"),
         get_value_or_empty(config_map, "BUILD_SECURITY_PATCH_DATE"),
         get_value_or_empty(config_map, "BUILD_TAGS"),
         get_value_or_empty(config_map, "BUILD_TYPE"),

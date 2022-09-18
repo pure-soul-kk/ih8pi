@@ -21,6 +21,7 @@ int main(int argc, char *argv[]) {
     if (is_init_stage && config.build_fingerprint != "") {
         property_override(property_list("ro.", "build.fingerprint"),
                 config.build_fingerprint.c_str());
+        property_override("ro.build.description", config.get_build_description().c_str());
     }
 
     if (is_init_stage && config.build_tags != "") {
@@ -39,10 +40,6 @@ int main(int argc, char *argv[]) {
     if (is_boot_completed_stage && config.build_version_release_or_codename != "") {
         property_override(property_list("ro.", "build.version.release_or_codename"),
                 config.build_version_release_or_codename.c_str());
-    }
-
-    if (is_init_stage && config.build_description != "") {
-        property_override("ro.build.description", config.build_description.c_str());
     }
 
     if (is_boot_completed_stage && config.build_security_patch_date != "") {
