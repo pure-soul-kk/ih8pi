@@ -24,10 +24,6 @@ int main(int argc, char *argv[]) {
         property_override("ro.build.description", config.get_build_description().c_str());
     }
 
-    if (is_init_stage && config.build_type != "") {
-        property_override(property_list("ro.", "build.type"), config.build_type.c_str());
-    }
-
     if (is_boot_completed_stage && config.build_version_release != "") {
         property_override(property_list("ro.", "build.version.release"),
                 config.build_version_release.c_str());
@@ -67,6 +63,7 @@ int main(int argc, char *argv[]) {
     if (is_init_stage) {
         property_override("ro.debuggable", "0");
         property_override(property_list("ro.", "build.tags"), "release-keys");
+        property_override(property_list("ro.", "build.type"), "user");
     }
 
     if (is_boot_completed_stage) {
