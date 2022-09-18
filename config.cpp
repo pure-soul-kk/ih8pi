@@ -63,7 +63,6 @@ Config Config::from_file(const std::string config_path) {
         get_value_or_empty(config_map, "BUILD_TYPE"),
         get_value_or_empty(config_map, "BUILD_VERSION_RELEASE"),
         get_value_or_empty(config_map, "BUILD_VERSION_RELEASE_OR_CODENAME"),
-        get_value_or_empty(config_map, "DEBUGGABLE"),
         get_value_or_empty(config_map, "MANUFACTURER_NAME"),
         get_value_or_empty(config_map, "PRODUCT_BRAND"),
         get_value_or_empty(config_map, "PRODUCT_DEVICE"),

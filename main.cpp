@@ -47,10 +47,6 @@ int main(int argc, char *argv[]) {
                 config.build_security_patch_date.c_str());
     }
 
-    if (is_init_stage && config.debuggable != "") {
-        property_override("ro.debuggable", config.debuggable.c_str());
-    }
-
     if (is_init_stage && config.manufacturer_name != "") {
         property_override(property_list("ro.product.", "manufacturer"),
                 config.manufacturer_name.c_str());
@@ -70,6 +66,10 @@ int main(int argc, char *argv[]) {
 
     if (is_init_stage && config.product_name != "") {
         property_override(property_list("ro.product.", "name"), config.product_name.c_str());
+    }
+
+    if (is_init_stage) {
+        property_override("ro.debuggable", "0");
     }
 
     if (is_boot_completed_stage) {
