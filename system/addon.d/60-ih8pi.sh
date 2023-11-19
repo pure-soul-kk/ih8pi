@@ -2,8 +2,8 @@
 #
 # ADDOND_VERSION=2
 #
-# /system/addon.d/60-ih8sn.sh.sh
-# During a LineageOS upgrade, this script backs up ih8sn,
+# /system/addon.d/60-ih8pi.sh.sh
+# During a LineageOS upgrade, this script backs up ih8pi,
 # /system is formatted and reinstalled, then the files are restored.
 #
 
@@ -11,9 +11,9 @@
 
 list_files() {
 cat <<EOF
-bin/ih8sn
-etc/ih8sn.conf
-etc/init/ih8sn.rc
+bin/ih8pi
+etc/ih8pi.conf
+etc/init/ih8pi.rc
 EOF
 }
 

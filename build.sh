@@ -32,4 +32,4 @@ ${CXX} \
     properties.cpp \
     -static \
     -std=c++17 \
-    -o $OUT/ih8sn
+    -o $OUT/ih8pi

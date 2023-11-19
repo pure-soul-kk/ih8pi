@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
     const auto is_init_stage = strcmp(argv[1], "init") == 0;
     const auto is_boot_completed_stage = strcmp(argv[1], "boot_completed") == 0;
 
-    const auto config = Config::from_file("/system/etc/ih8sn.conf");
+    const auto config = Config::from_file("/system/etc/ih8pi.conf");
 
     if (is_init_stage && config.build_fingerprint != "") {
         property_override(property_list("ro.", "build.fingerprint"),
